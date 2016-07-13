@@ -76,12 +76,14 @@ app.post('/hello', function (req, res, next) {
 
  client.methods.jsonMethod(function (data, response) {
      // parsed response body as js object
-     console.log(data);
+
+
+     console.log(JSON.stringify(data));
      // raw response
      //console.log(response);
      // Loop otherwise..
      var botPayload = {
-	     text : data
+	     text : JSON.stringify(data)
      };
 	   if (userName !== 'slackbot') {
 	     return res.status(200).json(botPayload);
@@ -103,12 +105,12 @@ app.get('/helloquery', function (req, res, next) {
 
    client.methods.jsonMethod(function (data, response) {
        // parsed response body as js object
-       console.log(data);
+        console.log(JSON.stringify(data));
        // raw response
        //console.log(response);
        // Loop otherwise..
        var botPayload = {
-	       text : data
+	      text : JSON.stringify(data)
        };
   	   if (userName !== 'slackbot') {
   	     return res.status(200).json(botPayload);
