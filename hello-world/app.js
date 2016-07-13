@@ -69,9 +69,7 @@ app.get('/simpleget', function (req, res, next) {
 app.post('/hello', function (req, res, next) {
   var userName = req.body.user_name;
 
-  var botPayload = {
-    text : 'Hello ' + userName + ', welcome to OpsFAQ channel with Mangal! I\'ll help you show around.'
-  };
+
 
  // registering remote methods
  client.registerMethod("jsonMethod", "https://opsbotrestful.herokuapp.com/contacts", "GET");
@@ -82,8 +80,11 @@ app.post('/hello', function (req, res, next) {
      // raw response
      //console.log(response);
      // Loop otherwise..
+     var botPayload = {
+	     text : data
+     };
 	   if (userName !== 'slackbot') {
-	     return res.status(200).json(data);
+	     return res.status(200).json(botPayload);
 	   } else {
 	     return res.status(200).end();
   	 }
@@ -95,9 +96,7 @@ app.post('/hello', function (req, res, next) {
 
 app.get('/helloquery', function (req, res, next) {
   var userName = req.query.user_name;
-  var botPayload = {
-    text : 'Hello ' + userName + ', welcome to opsfaq Slack channel by mangal sain! I\'ll be your guide.'
-  };
+
 
    // registering remote methods
    client.registerMethod("jsonMethod", "https://opsbotrestful.herokuapp.com/contacts", "GET");
@@ -108,8 +107,11 @@ app.get('/helloquery', function (req, res, next) {
        // raw response
        //console.log(response);
        // Loop otherwise..
+       var botPayload = {
+	       text : data
+       };
   	   if (userName !== 'slackbot') {
-  	     return res.status(200).send(data);
+  	     return res.status(200).json(botPayload);
   	   } else {
   	     return res.status(200).end();
     	 }
