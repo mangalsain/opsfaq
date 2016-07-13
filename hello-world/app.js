@@ -80,7 +80,7 @@ app.post('/hello', function (req, res, next) {
      // parsed response body as js object
      console.log(data);
      // raw response
-     console.log(response);
+     //console.log(response);
      // Loop otherwise..
 	   if (userName !== 'slackbot') {
 	     return res.status(200).json(data);
@@ -106,7 +106,7 @@ app.get('/helloquery', function (req, res, next) {
        // parsed response body as js object
        console.log(data);
        // raw response
-       console.log(response);
+       //console.log(response);
        // Loop otherwise..
   	   if (userName !== 'slackbot') {
   	     return res.status(200).send(data);
