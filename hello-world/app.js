@@ -34,6 +34,38 @@ app.listen(port, function () {
   console.log('Listening on port ' + port);
 });
 
+app.post('/simple', function (req, res, next) {
+  var userName = req.body.user_name;
+
+  var botPayload = {
+    text : 'Hello ' + userName + ', Simple test'
+  };
+
+  // Loop otherwise..
+ 	   if (userName !== 'slackbot') {
+ 	     return res.status(200).json(botPayload);
+ 	   } else {
+ 	     return res.status(200).end();
+  	 }
+
+});
+
+app.get('/simpleget', function (req, res, next) {
+  var userName = req.query.user_name;
+
+  var botPayload = {
+    text : 'Hello ' + userName + ', Simple test with get'
+  };
+
+  // Loop otherwise..
+ 	   if (userName !== 'slackbot') {
+ 	     return res.status(200).json(botPayload);
+ 	   } else {
+ 	     return res.status(200).end();
+  	 }
+
+});
+
 app.post('/hello', function (req, res, next) {
   var userName = req.body.user_name;
 
@@ -51,7 +83,7 @@ app.post('/hello', function (req, res, next) {
      console.log(response);
      // Loop otherwise..
 	   if (userName !== 'slackbot') {
-	     return res.status(200).send(data);
+	     return res.status(200).json(data);
 	   } else {
 	     return res.status(200).end();
   	 }
