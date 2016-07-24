@@ -42,11 +42,11 @@ app.post('/simple', function (req, res, next) {
   };
 
   // Loop otherwise..
- 	   if (userName !== 'slackbot') {
- 	     return res.status(200).json(botPayload);
- 	   } else {
- 	     return res.status(200).end();
-  	 }
+  if (userName !== 'slackbot') {
+	return res.status(200).json(botPayload);
+  }else {
+	return res.status(200).end();
+  }
 
 });
 
@@ -66,7 +66,75 @@ app.get('/simpleget', function (req, res, next) {
 
 });
 
+
 app.post('/hello', function (req, res, next) {
+  var userName = req.body.user_name;
+
+
+	// set content-type header and data as json in args parameter
+	var args = {
+	data: { intent: "upgrade" },
+	headers: { "Content-Type": "application/json" }
+	};
+
+ // registering remote methods
+ client.registerMethod("jsonMethod", "http://104.197.241.157:8080/v1/upgrade", "POST");
+
+ client.methods.jsonMethod(args, function (data, response) {
+     // parsed response body as js object
+
+
+     console.log(JSON.stringify(data));
+     // raw response
+     //console.log(response);
+     // Loop otherwise..
+     var botPayload = {
+	     text : JSON.stringify(data)
+     };
+	   if (userName !== 'slackbot') {
+	     return res.status(200).json(botPayload);
+	   } else {
+	     return res.status(200).end();
+  	 }
+  });
+
+
+
+});
+
+app.get('/helloquery', function (req, res, next) {
+  var userName = req.query.user_name;
+
+
+	// set content-type header and data as json in args parameter
+	var args = {
+	data: { intent: "upgrade" },
+	headers: { "Content-Type": "application/json" }
+	};
+
+   // registering remote methods
+   client.registerMethod("jsonMethod", "http://104.197.241.157:8080/v1/upgrade", "POST");
+
+   client.methods.jsonMethod(args, function (data, response) {
+       // parsed response body as js object
+        console.log(JSON.stringify(data));
+       // raw response
+       //console.log(response);
+       // Loop otherwise..
+       var botPayload = {
+	      text : JSON.stringify(data)
+       };
+  	   if (userName !== 'slackbot') {
+  	     return res.status(200).json(botPayload);
+  	   } else {
+  	     return res.status(200).end();
+    	 }
+  });
+
+
+});
+
+app.post('/helloold', function (req, res, next) {
   var userName = req.body.user_name;
 
 
@@ -96,7 +164,7 @@ app.post('/hello', function (req, res, next) {
 
 });
 
-app.get('/helloquery', function (req, res, next) {
+app.get('/helloqueryold', function (req, res, next) {
   var userName = req.query.user_name;
 
 
