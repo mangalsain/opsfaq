@@ -1,0 +1,24 @@
+{
+  "name": "chatbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "monitor": "nodemon app.js",
+    "deploy": "gcloud app deploy"
+  },
+  "engines": {
+    "node": "~4.4"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "botbuilder": "^3.0.1",
+    "mongoose": "^4.5.7",
+    "node-rest-client": "^2.0.1",
+    "request": "^2.74.0",
+    "restify": "^4.1.1",
+    "yamljs": "^0.2.8"
+  }
+}
